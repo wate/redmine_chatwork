@@ -6,6 +6,7 @@ This plugin notifies updates of Redmine tickets and wiki to your [ChatWork](http
 
 ## Compatible with:
 
+* Redmine 3.4.x
 * Redmine 3.3.x
 * Redmine 3.2.x
 
@@ -13,12 +14,11 @@ This plugin notifies updates of Redmine tickets and wiki to your [ChatWork](http
 
 1. [Get your ChatWork API token from the authentication page](https://www.chatwork.com/service/packages/chatwork/subpackages/api/apply_beta_business.php)
 2. Download this repository
-3. Move `src/redmine_chatwork` to your plugins directory
-4. Install `httpclient` by running `bundle install` from the plugin directory
-5. Restart Redmine
-6. Open plugin setting: `Administration > Plugins > Redmine Chatwork`
-7. Set you API token and default room URL
-8. Create "ChatWork" and "ChatWork Disabled" project custom field (option)
+3. Install `httpclient` by running `bundle install` from the plugin directory
+4. Restart Redmine
+5. Open plugin setting: `Administration > Plugins > Redmine Chatwork`
+6. Set you API token and default room URL
+7. Create "ChatWork" and "ChatWork Disabled" project custom field (option)
 
 ## Settings
 
@@ -42,6 +42,10 @@ You can override the room or turn off notifications by using project custom fiel
 ![](https://cloud.githubusercontent.com/assets/6197292/22985404/aa72fb38-f3eb-11e6-8520-f855fa02c405.png)
 
 ## Changelog
+
+### v0.2.1
+
+* Fix hash keys for plugin setting
 
 ### v0.2.0
 
