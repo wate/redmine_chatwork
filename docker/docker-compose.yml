@@ -15,7 +15,7 @@ redmine:
     REDMINE_PORT: 10083
     DB_ENCODING: utf8mb4
   volumes:
-    - ../src:/home/redmine/data/plugins
+    - ../:/home/redmine/data/plugins/redmine_chatwork
     - ./log:/home/redmine/redmine/log
   ports:
     - "10083:80"
