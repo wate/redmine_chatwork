@@ -18,5 +18,5 @@ Redmine::Plugin.register :redmine_chatwork do
       'post_updates' => '1',
       'post_wiki_updates' => '1'
   },
-           :partial => 'settings/chatwork_settings'
+  :partial => 'settings/chatwork_settings'
 end
