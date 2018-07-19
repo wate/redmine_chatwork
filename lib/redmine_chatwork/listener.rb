@@ -94,24 +94,25 @@ class ChatWorkListener < Redmine::Hook::Listener
   end
 
   def create_body(body=nil, header=nil, footer=nil)
-    result = '[info]'
-
+    msg_title = msg_body = msg_footer = ''
     if header
-      result +=
-          "[title]#{'['+header[:status]+']' if header[:status]} #{header[:title] if header[:title]} / #{header[:project] if header[:project]}\n#{header[:url] if header[:url]}\n#{'By: '+header[:by] if header[:by]}#{', Assignee: '+header[:assigned_to] if header[:assigned_to]}#{', Author: '+header[:author] if header[:author]}[/title]"
+      msg_title = '[title]'
+      msg_title *= '[' + header[:status] + ']' if header[:status]
+      msg_title *= header[:title] if header[:title]
+      msg_title *= ' / ' + header[:project] if header[:project]
+      msg_title += '[/title]'
+
+      msg_body += header[:url] + "\n" if header[:url]
+      
+      msg_body += 'By: ' + header[:by] if header[:by]
+      msg_body += 'Assignee: ' + header[:assigned_to] if header[:assigned_to]
+      msg_body += 'Author: ' + header[:author] if header[:author]
     end
 
-    if body
-      result += body
-    end
+    msg_body += '[hr]' + body if body
+    msg_footer += '[hr]' + footer if footer
 
-    if footer
-      result += "\n" + footer
-    end
-
-    result += '[/info]'
-
-    CGI.escape result
+    CGI.escape '[info]' + msg_title + msg_body+ msg_footer + '[/info]'
   end
 
   private
