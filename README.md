@@ -43,6 +43,11 @@ You can override the room or turn off notifications by using project custom fiel
 
 ## Changelog
 
+### v0.3.0
+
+* Modify send message
+* Add translation
+
 ### v0.2.1
 
 * Fix hash keys for plugin setting

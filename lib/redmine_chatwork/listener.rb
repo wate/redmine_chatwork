@@ -50,7 +50,7 @@ class ChatWorkListener < Redmine::Hook::Listener
     detail = journal.details.map { |d| detail_to_field d }
     footer = detail.join
 
-    speak room, header, body, footer
+    speak room, header, body, footer.strip
   end
 
   def controller_wiki_edit_after_save(context = {})
@@ -69,7 +69,7 @@ class ChatWorkListener < Redmine::Hook::Listener
         :url => object_url(page)
     }
 
-    body = "#{page.content.author} updated the wiki"
+    body = l(:text_wiki_content_updated, :author => page.content.author)
 
     speak room, header, body
   end
@@ -94,24 +94,26 @@ class ChatWorkListener < Redmine::Hook::Listener
   end
 
   def create_body(body=nil, header=nil, footer=nil)
-    result = '[info]'
-
+    msg_title = ''
+    msg_body = ''
     if header
-      result +=
-          "[title]#{'['+header[:status]+']' if header[:status]} #{header[:title] if header[:title]} / #{header[:project] if header[:project]}\n#{header[:url] if header[:url]}\n#{'By: '+header[:by] if header[:by]}#{', Assignee: '+header[:assigned_to] if header[:assigned_to]}#{', Author: '+header[:author] if header[:author]}[/title]"
+      msg_title = '[title]'
+      msg_title << '[' + header[:status] + ']' if header[:status]
+      msg_title << header[:title] if header[:title]
+      msg_title << ' / ' + header[:project] if header[:project]
+      msg_title << '[/title]'
+
+      msg_body << header[:url] + "\n" if header[:url]
+      msg_body << l(:field_updated_by) + ': ' + header[:by] if header[:by]
+      msg_body << '  ' + l(:field_assigned_to) + ': ' + header[:assigned_to] if header[:assigned_to]
+      msg_body << '  ' + l(:field_author) + ': ' + header[:author] if header[:author]
     end
+    msg_body << '[hr]' + body if body && ! body.empty?
 
-    if body
-      result += body
-    end
+    msg_footer = ''
+    msg_footer << '[hr]' + footer if footer && ! footer.empty?
 
-    if footer
-      result += "\n" + footer
-    end
-
-    result += '[/info]'
-
-    CGI.escape result
+    CGI.escape '[info]' + msg_title + msg_body + msg_footer + '[/info]'
   end
 
   private
@@ -191,8 +193,6 @@ class ChatWorkListener < Redmine::Hook::Listener
         value = escape project.to_s
       when "status"
         return ''
-        #status = IssueStatus.find(detail.value) rescue nil
-        #value = escape status.to_s
       when "priority"
         priority = IssuePriority.find(detail.value) rescue nil
         value = escape priority.to_s

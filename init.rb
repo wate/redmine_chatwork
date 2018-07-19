@@ -4,11 +4,11 @@ require_dependency 'redmine_chatwork/listener'
 
 Redmine::Plugin.register :redmine_chatwork do
   name 'Redmine Chatwork'
-  author 'Hori Yuma'
-  url 'https://github.com/hokkey/redmine_chatwork'
-  author_url 'https://github.com/hokkey/'
+  author 'Yoshiaki Tanaka'
+  url 'https://github.com/wate/redmine_chatwork'
+  author_url 'https://github.com/wate/'
   description 'A Redmine plugin to notify updates to ChatWork rooms'
-  version '0.2.1'
+  version '0.3.0'
 
   requires_redmine :version_or_higher => '3.2.0'
 
@@ -18,5 +18,5 @@ Redmine::Plugin.register :redmine_chatwork do
       'post_updates' => '1',
       'post_wiki_updates' => '1'
   },
-           :partial => 'settings/chatwork_settings'
+  :partial => 'settings/chatwork_settings'
 end
