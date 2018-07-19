@@ -98,19 +98,20 @@ class ChatWorkListener < Redmine::Hook::Listener
     msg_body = ''
     if header
       msg_title = '[title]'
-      msg_title += '[' + header[:status] + ']' if header[:status]
-      msg_title += header[:title] if header[:title]
-      msg_title += ' / ' + header[:project] if header[:project]
-      msg_title += '[/title]'
+      msg_title << '[' + header[:status] + ']' if header[:status]
+      msg_title << header[:title] if header[:title]
+      msg_title << ' / ' + header[:project] if header[:project]
+      msg_title << '[/title]'
 
-      msg_body += header[:url] + "\n" if header[:url]
-      msg_body += '  By: ' + header[:by] if header[:by]
-      msg_body += '  Assignee: ' + header[:assigned_to] if header[:assigned_to]
-      msg_body += '  Author: ' + header[:author] if header[:author]
+      msg_body << header[:url] + "\n" if header[:url]
+      msg_body << 'By: ' + header[:by] if header[:by]
+      msg_body << ' Assignee: ' + header[:assigned_to] if header[:assigned_to]
+      msg_body << ' Author: ' + header[:author] if header[:author]
     end
-    msg_body += '[hr]' + body if body
+    msg_body << '[hr]' + body if body
+
     msg_footer = ''
-    msg_footer = '[hr]' + footer if footer
+    msg_footer << '[hr]' + footer if footer
 
     CGI.escape '[info]' + msg_title + msg_body + msg_footer + '[/info]'
   end
