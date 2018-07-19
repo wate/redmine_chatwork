@@ -50,7 +50,7 @@ class ChatWorkListener < Redmine::Hook::Listener
     detail = journal.details.map { |d| detail_to_field d }
     footer = detail.join
 
-    speak room, header, body, footer
+    speak room, header, body, footer.strip
   end
 
   def controller_wiki_edit_after_save(context = {})
@@ -69,7 +69,7 @@ class ChatWorkListener < Redmine::Hook::Listener
         :url => object_url(page)
     }
 
-    body = "#{page.content.author} updated the wiki"
+    body = l(:text_wiki_content_updated, :author => page.content.author)
 
     speak room, header, body
   end
@@ -111,7 +111,6 @@ class ChatWorkListener < Redmine::Hook::Listener
     msg_body << '[hr]' + body if body && ! body.empty?
 
     msg_footer = ''
-    footer.strip!
     msg_footer << '[hr]' + footer if footer && ! footer.empty?
 
     CGI.escape '[info]' + msg_title + msg_body + msg_footer + '[/info]'
