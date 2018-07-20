@@ -44,6 +44,10 @@ The name of the custom field must be same from the example.
 
 ## Changelog
 
+### v0.4.0
+
+* Inherit parent project custom field value
+
 ### v0.3.1
 
 * Change project custom field name
