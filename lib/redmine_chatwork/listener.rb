@@ -62,6 +62,7 @@ class ChatWorkListener < Redmine::Hook::Listener
     disabled = check_disabled project
 
     return if disabled
+    return unless room
 
     header = {
         :project => escape(project),
@@ -158,7 +159,7 @@ class ChatWorkListener < Redmine::Hook::Listener
   def room_for_project(proj)
     return nil if proj.blank?
 
-    cf = ProjectCustomField.find_by_name("ChatWork")
+    cf = ProjectCustomField.find_by_name("ChatWork Room URL")
 
     val = [
         (proj.custom_value_for(cf).value rescue nil),
@@ -166,7 +167,6 @@ class ChatWorkListener < Redmine::Hook::Listener
     ].find { |v| v.present? }
 
     rid = val.match(/#!rid\d+/)
-
     rid[0][5..val.length]
   end
 
