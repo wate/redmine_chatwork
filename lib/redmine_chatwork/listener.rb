@@ -158,7 +158,7 @@ class ChatWorkListener < Redmine::Hook::Listener
   def room_for_project(proj)
     return nil if proj.blank?
 
-    cf = ProjectCustomField.find_by_name("ChatWork")
+    cf = ProjectCustomField.find_by_name("ChatWork Room URL")
 
     val = [
         (proj.custom_value_for(cf).value rescue nil),
