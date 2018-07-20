@@ -163,7 +163,6 @@ class ChatWorkListener < Redmine::Hook::Listener
 
     val = [
         (proj.custom_value_for(cf).value rescue nil),
-        (room_for_project proj.parent),
         Setting.plugin_redmine_chatwork['room'],
     ].find { |v| v.present? }
 
