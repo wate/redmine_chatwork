@@ -72,7 +72,7 @@ class ChatWorkListener < Redmine::Hook::Listener
 
     body = l(:text_wiki_content_updated, :author => page.content.author)
 
-    speak room, header, body if room
+    speak room, header, body
   end
 
   def speak(room, header, body=nil, footer=nil)
@@ -165,8 +165,6 @@ class ChatWorkListener < Redmine::Hook::Listener
         (proj.custom_value_for(cf).value rescue nil),
         Setting.plugin_redmine_chatwork['room'],
     ].find { |v| v.present? }
-
-    return nil unless val
 
     rid = val.match(/#!rid\d+/)
     rid[0][5..val.length]
