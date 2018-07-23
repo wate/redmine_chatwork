@@ -144,15 +144,7 @@ class ChatWorkListener < Redmine::Hook::Listener
 
     cf = ProjectCustomField.find_by_name("ChatWork Notice Disabled")
     state = proj.custom_value_for(cf).value rescue nil
-
-    if state == nil
-      return false
-    end
-
-    if state == '0'
-      return false
-    end
-
+    return false if state == nil or state == '0'
     true
   end
 
