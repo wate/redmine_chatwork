@@ -2,14 +2,14 @@
 
 <p>
   <label for="settings_token"><%= l(:text_api_token) %></label>
-  <input type="text" id="settings_token" value="<%= settings['token'] %>" name="settings[token]" required style="width:90%"/>
+  <input type="text" id="settings_token" value="<%= settings['token'] %>" name="settings[token]"/>
 </p>
 
 <p><a href="<%= l(:text_api_token_url) %>" target="_blank"><%= l(:text_api_token_desc) %></a></p>
 
 <p>
   <label for="settings_room"><%= l(:text_default_room_url) %></label>
-  <input type="text" id="settings_room" value="<%= settings['room'] %>" name="settings[room]" required placeholder="<%= l(:text_default_room_url_placeholder) %>" style="width:90%" />
+  <input type="text" id="settings_room" value="<%= settings['room'] %>" name="settings[room]" size=80 placeholder="<%= l(:text_default_room_url_placeholder) %>" />
 </p>
 
 <p><%= l(:text_default_room_url_desc) %><%= l(:text_project_room_desc) %></p>

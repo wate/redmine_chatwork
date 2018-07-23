@@ -167,6 +167,8 @@ class ChatWorkListener < Redmine::Hook::Listener
         Setting.plugin_redmine_chatwork['room'],
     ].find { |v| v.present? }
 
+    return nil unless val
+
     return val if val =~ /^\d+$/
 
     rid = val.match(/#!rid\d+/)
