@@ -18,7 +18,7 @@ This plugin notifies updates of Redmine tickets and wiki to your [ChatWork](http
 4. Restart Redmine
 5. Open plugin setting: `Administration > Plugins > Redmine Chatwork`
 6. Set you API token and default room URL
-7. Create `ChatWork Room URL` and `ChatWork Disabled` project custom field (option)
+7. Create `ChatWork Room URL` and `ChatWork Notice Disabled` project custom field (option)
 
 ## Settings
 
@@ -33,7 +33,7 @@ The name of the custom field must be same from the example.
 
 1. Create project custom fields:
   * A "Link" field named `ChatWork Room URL`
-  * A "Boolean" field named `ChatWork Disabled`
+  * A "Boolean" field named `ChatWork Notice Disabled`
 2. Go to the project setting which you want to override from default.
 3. Fill the "ChatWork" field to change the room to notify.
 4. Set "No" at the "ChatWork Disabled" field not to send updates.
@@ -44,13 +44,18 @@ The name of the custom field must be same from the example.
 
 ## Changelog
 
+### v0.4.1
+
+* Change project custom field name(`ChatWork Disabled` => `ChatWork Notice Disabled`)
+* plugin setting page remove `required` attribute by input field
+
 ### v0.4.0
 
 * Inherit parent project custom field value
 
 ### v0.3.1
 
-* Change project custom field name
+* Change project custom field name(`ChatWork` => `ChatWork Room URL`)
 
 ### v0.3.0
 

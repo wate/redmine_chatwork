@@ -142,17 +142,9 @@ class ChatWorkListener < Redmine::Hook::Listener
   def check_disabled(proj)
     return nil if proj.blank?
 
-    cf = ProjectCustomField.find_by_name("ChatWork Disabled")
+    cf = ProjectCustomField.find_by_name("ChatWork Notice Disabled")
     state = proj.custom_value_for(cf).value rescue nil
-
-    if state == nil
-      return false
-    end
-
-    if state == '0'
-      return false
-    end
-
+    return false if state.nil? or state == '0'
     true
   end
 
@@ -166,6 +158,8 @@ class ChatWorkListener < Redmine::Hook::Listener
         (room_for_project proj.parent),
         Setting.plugin_redmine_chatwork['room'],
     ].find { |v| v.present? }
+
+    return nil unless val
 
     return val if val =~ /^\d+$/
 
