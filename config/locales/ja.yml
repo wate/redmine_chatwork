@@ -12,3 +12,4 @@ ja:
   text_post_issue_update_desc: 既に投稿されている注記の更新や、チケット一覧からの一括更新は通知されません。
   text_post_wiki_update: Wikiの更新を通知
   text_wiki_content_updated: "%{author}がwikiを更新しました。"
+  text_issue_reminder: "チケット リマインダー"
