@@ -24,8 +24,8 @@ class ChatWorkListener < Redmine::Hook::Listener
     }
 
     body = escape issue.description if issue.description
-
-    speak room, header, body
+    content = create_body body, header
+    speak room, content, true
   end
 
   def controller_issues_edit_after_save(context={})
@@ -53,7 +53,8 @@ class ChatWorkListener < Redmine::Hook::Listener
     detail = journal.details.map { |d| detail_to_field d }
     footer = detail.join
 
-    speak room, header, body, footer.strip
+    content = create_body body, header, footer.strip
+    speak room, content, true
   end
 
   def controller_wiki_edit_after_save(context = {})
@@ -74,8 +75,8 @@ class ChatWorkListener < Redmine::Hook::Listener
     }
 
     body = l(:text_wiki_content_updated, :author => page.content.author)
-
-    speak room, header, body
+    content = create_body body, header
+    speak room, content, true
   end
 
 end

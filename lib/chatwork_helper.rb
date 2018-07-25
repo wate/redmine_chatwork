@@ -2,10 +2,10 @@ require 'httpclient'
 
 module ChatWorkHelper
 
-  def speak(room, header, body=nil, footer=nil)
+  # def speak(room, content, asyc=nil, header, body=nil, footer=nil)
+  def speak(room, content, asyc=nil)
     url = 'https://api.chatwork.com/v2/rooms/'
     token = Setting.plugin_redmine_chatwork['token']
-    content = create_body body, header, footer
     reqHeader = {'X-ChatWorkToken' => token}
     endpoint = "#{url}#{room}/messages"
 
@@ -13,14 +13,18 @@ module ChatWorkHelper
       client = HTTPClient.new
       client.ssl_config.cert_store.set_default_paths
       client.ssl_config.ssl_version = :auto
-      client.post_async(endpoint, "body=#{content}", reqHeader)
-
+      if asyc
+        client.post_async(endpoint, "body=#{content}", reqHeader)
+      else
+        client.post(endpoint, "body=#{content}", reqHeader)
+      end
     rescue Exception => e
       Rails.logger.info("cannot connect to #{endpoint}")
       Rails.logger.info(e)
     end
   end
 
+  private
   def create_body(body=nil, header=nil, footer=nil)
     msg_title = ''
     msg_body = ''
