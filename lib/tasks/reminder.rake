@@ -11,21 +11,22 @@ namespace :redmine_chatwork do
     days = 7
     days = ENV['days'].to_i if ENV['days']
 
+    projects = Project.where(:status => 1)
     if ENV['projects']
       project_ids = ENV['projects'].split(',').each(&:strip!)
-      projects = Project.find_by_ids(project_ids)
-    else
-      projects = Project.all
+      projects = projects.where(:id => project_ids)
     end
-
-    trackers = ENV['trackers'].split(',').each(&:strip!) if ENV['trackers']
     return unless projects
+    tracker_ids = ENV['trackers'].split(',').each(&:strip!) if ENV['trackers']
+    closed_status_ids = IssueStatus.where(:is_closed => true).pluck(:id)
     projects.each do |project|
       room = room_for_project project
       next unless room
       scope = Issue.where(:project_id => project.id)
-      scope = scope.where(:tracker_id => trackers) if trackers && !trackers.empty?
+      scope = scope.where(:is_private => 0)
+      scope = scope.where(:tracker_id => trackers) if tracker_ids && !tracker_ids.empty?
       scope = scope.where("due_date <= ?", days.day.from_now.to_date)
+      scope = scope.where("status_id NOT IN (?)", closed_status_ids)
       scope = scope.order(:due_date)
       reminder_issues = scope.includes(:tracker ,:status, :assigned_to, :project)
       if reminder_issues.size > 0
