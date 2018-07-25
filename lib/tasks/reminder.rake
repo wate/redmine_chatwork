@@ -24,7 +24,7 @@ namespace :redmine_chatwork do
       next unless room
       scope = Issue.where(:project_id => project.id)
       scope = scope.where(:is_private => 0)
-      scope = scope.where(:tracker_id => trackers) if tracker_ids && !tracker_ids.empty?
+      scope = scope.where(:tracker_id => tracker_ids) if tracker_ids && !tracker_ids.empty?
       scope = scope.where("due_date <= ?", days.day.from_now.to_date)
       scope = scope.where("status_id NOT IN (?)", closed_status_ids)
       scope = scope.order(:due_date)
