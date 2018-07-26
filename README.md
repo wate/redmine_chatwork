@@ -38,11 +38,38 @@ The name of the custom field must be same from the example.
 3. Fill the "ChatWork" field to change the room to notify.
 4. Set "No" at the "ChatWork Disabled" field not to send updates.
 
+### Set reminder task
+
+Redmine offers a rake task that sends reminder active projects and issues that are past due or due in the next specified number of days.
+
+| paramater name | description                    | default      |
+| -------------- | ------------------------------ | ------------ |
+| days           | number of days to remind about | 7            |
+| projects       | id of project                  | all projects |
+| trackers       | id of tracker                  | all trackers |
+| LOCALE         | notify language                | en           |
+
+When adding this to your crontab, add the rake command
+
+```
+0 1 * * * cd </path/to/redmine>; bundle exec rake redmine_chatwork:reminder  RAILS_ENV="production"
+```
+
+```
+0 1 * * * cd </path/to/redmine>; bundle exec rake redmine_chatwork:reminder projects="1,2,3" trackers="4,5,6" days=10 LOCALE="ja" RAILS_ENV="production" 
+```
+
+* `</path/to/redmine>` was specify Redmine installation directory.
+
 ## Screenshot
 
 ![](https://cloud.githubusercontent.com/assets/6197292/22985404/aa72fb38-f3eb-11e6-8520-f855fa02c405.png)
 
 ## Changelog
+
+### v0.5.0
+
+* Add reminder task
 
 ### v0.4.1
 
