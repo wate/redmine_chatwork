@@ -40,7 +40,7 @@ namespace :redmine_chatwork do
       end
       content = '[info]' + msg_title + msg_body + '[/info]'
       puts content
-      speak room, content
+      speak room, content, false
     end
   end
 end

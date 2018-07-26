@@ -3,7 +3,7 @@ require 'httpclient'
 module ChatWorkHelper
 
   # def speak(room, content, asyc=nil, header, body=nil, footer=nil)
-  def speak(room, content, asyc=nil)
+  def speak(room, content, asyc=true)
     url = 'https://api.chatwork.com/v2/rooms/'
     token = Setting.plugin_redmine_chatwork['token']
     reqHeader = {'X-ChatWorkToken' => token}
