@@ -11,7 +11,7 @@ namespace :redmine_chatwork do
     days = 7
     days = ENV['days'].to_i if ENV['days']
 
-    projects = Project.where(:status => 1)
+    projects = Project.where(:status => Project::STATUS_ACTIVE)
     if ENV['projects']
       project_ids = ENV['projects'].split(',').each(&:strip!)
       projects = projects.where(:id => project_ids)
