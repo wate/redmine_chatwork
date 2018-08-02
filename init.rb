@@ -1,6 +1,7 @@
 require 'redmine'
 
 require_dependency 'redmine_chatwork/listener'
+require_dependency 'issue_patch'
 
 Redmine::Plugin.register :redmine_chatwork do
   name 'Redmine Chatwork'
@@ -19,4 +20,11 @@ Redmine::Plugin.register :redmine_chatwork do
       'post_wiki_updates' => '1'
   },
   :partial => 'settings/chatwork_settings'
+end
+
+ActionDispatch::Callbacks.to_prepare do
+	require_dependency 'issue'
+	unless Issue.included_modules.include? RedmineChatWork::IssuePatch
+		Issue.send(:include, RedmineChatWork::IssuePatch)
+	end
 end

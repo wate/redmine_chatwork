@@ -4,7 +4,7 @@ class ChatWorkListener < Redmine::Hook::Listener
 
   include ChatWorkHelper
 
-  def controller_issues_new_after_save(context={})
+  def redmine_chatwork_issues_new_after_save(context={})
     issue = context[:issue]
     room = room_for_project issue.project
     disabled = check_disabled issue.project
@@ -28,7 +28,7 @@ class ChatWorkListener < Redmine::Hook::Listener
     speak room, content
   end
 
-  def controller_issues_edit_after_save(context={})
+  def redmine_chatwork_issues_edit_after_save(context={})
     issue = context[:issue]
     journal = context[:journal]
     room = room_for_project issue.project
