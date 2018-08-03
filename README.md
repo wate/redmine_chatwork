@@ -56,7 +56,7 @@ When adding this to your crontab, add the rake command
 ```
 
 ```
-0 1 * * * cd </path/to/redmine>; bundle exec rake redmine_chatwork:reminder projects="1,2,3" trackers="4,5,6" days=10 LOCALE="ja" RAILS_ENV="production" 
+0 1 * * * cd </path/to/redmine>; bundle exec rake redmine_chatwork:reminder projects="1,2,3" trackers="4,5,6" days=10 LOCALE="ja" RAILS_ENV="production"
 ```
 
 * `</path/to/redmine>` was specify Redmine installation directory.
@@ -66,6 +66,10 @@ When adding this to your crontab, add the rake command
 ![](https://cloud.githubusercontent.com/assets/6197292/22985404/aa72fb38-f3eb-11e6-8520-f855fa02c405.png)
 
 ## Changelog
+
+### v0.6.0
+
+* issue hook useing ActiveRecode callback
 
 ### v0.5.0
 

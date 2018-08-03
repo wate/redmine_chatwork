@@ -9,7 +9,7 @@ Redmine::Plugin.register :redmine_chatwork do
   url 'https://github.com/wate/redmine_chatwork'
   author_url 'https://github.com/wate/'
   description 'A Redmine plugin to notify updates to ChatWork rooms'
-  version '0.5.0'
+  version '0.6.0'
 
   requires_redmine :version_or_higher => '3.2.0'
 
