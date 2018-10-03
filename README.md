@@ -67,6 +67,10 @@ When adding this to your crontab, add the rake command
 
 ## Changelog
 
+### v0.7.0
+
+* modify wiki page update notify
+
 ### v0.6.0
 
 * issue hook useing ActiveRecode callback
