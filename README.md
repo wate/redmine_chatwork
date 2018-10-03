@@ -67,6 +67,10 @@ When adding this to your crontab, add the rake command
 
 ## Changelog
 
+### v0.7.1
+
+* update language file
+
 ### v0.7.0
 
 * modify wiki page update notify
