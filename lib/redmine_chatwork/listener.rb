@@ -73,8 +73,10 @@ class ChatWorkListener < Redmine::Hook::Listener
         :title => escape(page.title),
         :url => object_url(page)
     }
-
     body = l(:text_wiki_content_updated, :author => page.content.author)
+    if page.content.version > 1
+      body << '[hr]' + l(:text_wiki_content_diff) + header[:url] + '/diff?version=' + page.content.version.to_s
+    end
     content = create_body body, header
     speak room, content
   end
