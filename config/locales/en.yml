@@ -12,4 +12,5 @@ en:
   text_post_issue_update_desc: Batch update or updating already posted note won't be notified.
   text_post_wiki_update: Notify wiki updates
   text_wiki_content_updated: "%{author} updated the wiki"
+  text_wiki_content_diff: "Difference:"
   text_issue_reminder: "Issue Reminder"
