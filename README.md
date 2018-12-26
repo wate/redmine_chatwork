@@ -67,6 +67,10 @@ When adding this to your crontab, add the rake command
 
 ## Changelog
 
+### v0.8.0
+
+* support Redmine 4.0
+
 ### v0.7.1
 
 * update language file
